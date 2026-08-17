@@ -1,0 +1,65 @@
+<!-- ==========================================================================
+     VIDEO SHOWCASE SECTION (Parallax)
+     ========================================================================== -->
+<section class="video-section" id="video-showcase">
+  <div class="container video-parallax-container">
+    <!-- Animated Video Title -->
+    <h3 class="video-parallax-title" data-i18n="video.title">
+      Driving Regional Progress & Industrial Vision
+    </h3>
+
+    <!-- Animated Video Frame -->
+    <div class="video-frame" id="videoFrame">
+      <video
+        class="video-bg"
+        autoplay
+        loop
+        muted
+        playsinline
+        poster="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=1200"
+      >
+        <source
+          src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
+          type="video/mp4"
+        />
+      </video>
+
+      <div class="video-overlay-gradient"></div>
+
+      <!-- Bottom Overlay: Just CTA aligned right -->
+      <div class="video-content-bottom">
+        <button class="video-cta-btn" aria-label="Watch Video" type="button">
+          <span class="play-icon-wrapper">
+            <!-- FIXED: Correct Phosphor class syntax -->
+            <i class="ph-fill ph-play"></i>
+          </span>
+          <span class="cta-label" data-i18n="video.cta">Watch Video</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FULLSCREEN VIDEO MODAL -->
+<div class="video-modal" id="videoModal" aria-hidden="true">
+  <div class="video-modal__backdrop" id="modalBackdrop"></div>
+  <div class="video-modal__content">
+    <button
+      class="video-modal__close"
+      id="closeVideoBtn"
+      aria-label="Close Video"
+      type="button"
+    >
+      <i class="ph ph-x"></i>
+    </button>
+    <div class="video-modal__player-wrapper">
+      <video id="fullVideoPlayer" controls playsinline>
+        <source
+          src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
+          type="video/mp4"
+        />
+        Your browser does not support HTML5 video.
+      </video>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,141 @@
+<!-- ==========================================================================
+     HERO SECTION (Advanced Parallax & Masking)
+     ========================================================================== -->
+<section class="hero-advanced-section" id="hero">
+  <!-- SLIDE 1 -->
+  <div class="hero-slide is-active" data-slide="0">
+    <div
+      class="hero-bg-blurred"
+      style="
+        background-image: url(&quot;./assets/images/kolak-hero-slide1-bg.jpg&quot;);
+      "
+    ></div>
+    <div class="hero-bg-overlay"></div>
+
+    <div class="container hero-container">
+      <div class="hero-content">
+        <h1 data-i18n="hero.title">Empowering Global Trade & Industry</h1>
+        <p data-i18n="hero.subtitle">
+          A legacy of excellence and industrial expansion across global markets
+          since 1920
+        </p>
+        <div class="hero-actions">
+          <a
+            href="#services"
+            class="btn btn-primary"
+            data-i18n="hero.cta_primary"
+            >Our Services</a
+          >
+          <!-- FIXED: Outline button is now distinctly styled in CSS -->
+          <a
+            href="#about"
+            class="btn btn-outline hero-btn-outline"
+            data-i18n="hero.cta_secondary"
+            >Discover Kolak</a
+          >
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <!-- 1. The Glass Edge Border -->
+        <div class="hero-mask-layer hero-glass-border"></div>
+
+        <!-- 2. The Clear Background Layer -->
+        <div class="hero-mask-layer hero-mask-bg">
+          <div
+            class="hero-bg-clear"
+            style="
+              background-image: url(&quot;./assets/images/kolak-hero-slide1-bg.jpg&quot;);
+            "
+          ></div>
+        </div>
+
+        <!-- 3. Foreground Pop-out Layer -->
+        <div class="hero-mask-layer hero-mask-fg">
+          <img
+            src="./assets/images/kolak-hero-slide1-fg.webp"
+            alt="Slide 1 Foreground"
+            class="hero-fg-img parallax-target"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 2 -->
+  <div class="hero-slide" data-slide="1">
+    <div
+      class="hero-bg-blurred"
+      style="
+        background-image: url(&quot;./assets/images/kolak-hero-slide2-bg.jpg&quot;);
+      "
+    ></div>
+    <div class="hero-bg-overlay"></div>
+    <div class="container hero-container">
+      <div class="hero-content">
+        <h1 data-i18n="hero.slide2_title">
+          Pioneering Sustainable Infrastructure
+        </h1>
+        <p data-i18n="hero.slide2_subtitle">
+          Building the foundation for tomorrow's regional economies.
+        </p>
+        <div class="hero-actions">
+          <a
+            href="#about"
+            class="btn btn-outline hero-btn-outline"
+            data-i18n="hero.cta_secondary"
+            >Discover Kolak</a
+          >
+          <a
+            href="#services"
+            class="btn btn-primary"
+            data-i18n="hero.cta_primary"
+            >Our Services</a
+          >
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-mask-layer hero-glass-border"></div>
+        <div class="hero-mask-layer hero-mask-bg">
+          <div
+            class="hero-bg-clear"
+            style="
+              background-image: url(&quot;./assets/images/kolak-hero-slide2-bg.jpg&quot;);
+            "
+          ></div>
+        </div>
+        <div class="hero-mask-layer hero-mask-fg">
+          <!-- FIXED: Using webp version for slide 2 -->
+          <img
+            src="./assets/images/kolak-hero-slide2-fg.webp"
+            alt="Slide 2 Foreground"
+            class="hero-fg-img parallax-target"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDER CONTROLS -->
+  <div class="hero-controls-wrapper">
+    <!-- NEW: Dynamic Slide Counter -->
+    <div class="hero-slide-counter">
+      <span class="current-slide">1</span>
+      <span class="divider">/</span>
+      <span class="total-slides">2</span>
+    </div>
+
+    <div class="hero-progress-track">
+      <div class="hero-progress-fill"></div>
+    </div>
+
+    <div class="hero-nav-arrows">
+      <button class="hero-arrow prev" aria-label="Previous Slide">
+        <i class="ph-bold ph-caret-left"></i>
+      </button>
+      <button class="hero-arrow next" aria-label="Next Slide">
+        <i class="ph-bold ph-caret-right"></i>
+      </button>
+    </div>
+  </div>
+</section>

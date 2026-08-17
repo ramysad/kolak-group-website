@@ -1,0 +1,76 @@
+<header class="site-header">
+  <div class="container nav-container">
+    <!-- Brand Logo (Proportional Horizontal Lockup) -->
+    <a
+      href="#"
+      class="brand-logo"
+      aria-label="Kolak Group Home"
+      style="display: flex; align-items: center; gap: 0.75rem"
+    >
+      <!-- Static Logomark -->
+      <img
+        src="assets/images/kolak-logomark.svg"
+        alt="Kolak Group Mark"
+        height="36"
+        width="auto"
+        class="header-logo__mark"
+      />
+      <!-- Dynamic Logotype (Swaps EN/AR) -->
+      <img
+        src="assets/images/kolak-logotype-en.svg"
+        alt="Kolak Group Typography"
+        height="28"
+        width="auto"
+        class="header-logo__type"
+        data-logo-en="assets/images/kolak-logotype-en.svg"
+        data-logo-ar="assets/images/kolak-logotype-ar.svg"
+      />
+    </a>
+
+    <!-- Main Navigation (Inactive Page Links) -->
+    <nav class="nav-links">
+      <a href="#" data-i18n="nav.about">About Us</a>
+      <a href="#" data-i18n="nav.businesses">Our Businesses</a>
+      <a href="#" data-i18n="nav.people">Our People</a>
+      <a href="#" data-i18n="nav.news">News & Resources</a>
+      <a href="#" data-i18n="nav.career">Career</a>
+    </nav>
+
+    <!-- Navigation Actions (Active Toggles) -->
+    <div class="nav-actions">
+      <!-- Theme Toggle -->
+      <button
+        id="themeToggle"
+        class="icon-btn theme-toggle-btn"
+        aria-label="Toggle Dark Mode"
+        type="button"
+      >
+        <i class="ph ph-moon" id="themeIcon"></i>
+      </button>
+
+      <!-- Language Toggle -->
+      <button
+        id="langToggle"
+        class="lang-toggle-btn"
+        aria-label="Switch Language"
+        type="button"
+      >
+        <i class="ph ph-globe"></i>
+        <span id="langText" data-i18n="lang.toggle">العربية</span>
+      </button>
+
+      <!-- Contact Button (Inactive Link) -->
+      <a href="#" class="btn btn-primary" data-i18n="nav.contact">Contact Us</a>
+
+      <!-- Mobile Menu Trigger (For Responsiveness) -->
+      <button
+        id="mobileMenuBtn"
+        class="icon-btn mobile-toggle-btn"
+        aria-label="Open Navigation"
+        type="button"
+      >
+        <i class="ph ph-list"></i>
+      </button>
+    </div>
+  </div>
+</header>

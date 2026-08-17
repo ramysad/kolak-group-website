@@ -1,0 +1,699 @@
+/* ==========================================================================
+   GLOBAL RESETS
+   ========================================================================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ==========================================================================
+   1. BRAND COLOR SYSTEM & TOKENS (Light Mode)
+   ========================================================================== */
+:root {
+  /* Brand Core Definitions */
+  --brand-constellation-blue: #253bff;
+  --brand-midnight-void: #232e3e;
+  --brand-horizon-light: #c8d6f9;
+
+  /* Primary Palette (Constellation Blue) */
+  --primitive-primary-50: #edf0ff;
+  --primitive-primary-100: #dce2ff;
+  --primitive-primary-200: #b9c5ff;
+  --primitive-primary-300: #8fa1ff;
+  --primitive-primary-400: #6579ff;
+  --primitive-primary-500: #4255ff;
+  --primitive-primary-600: var(--brand-constellation-blue);
+  --primitive-primary-700: #1927d6;
+  --primitive-primary-800: #101aa8;
+  --primitive-primary-900: #0a117a;
+
+  /* Neutral Palette (Midnight Void) */
+  --primitive-neutral-50: #f4f6f8;
+  --primitive-neutral-100: #e4e8ec;
+  --primitive-neutral-200: #c5ccd6;
+  --primitive-neutral-300: #a1abb8;
+  --primitive-neutral-400: #7e8a9a;
+  --primitive-neutral-500: #5f6d7d;
+  --primitive-neutral-600: #485563;
+  --primitive-neutral-700: #35414d;
+  --primitive-neutral-800: var(--brand-midnight-void);
+  --primitive-neutral-900: #161f2b;
+  --primitive-neutral-1000: #090e15;
+
+  /* Backgrounds & Surfaces */
+  --surface-page: var(--primitive-neutral-50);
+  --surface-card: #ffffff;
+  --surface-subtle: var(--primitive-neutral-100);
+  --surface-inverse: var(--brand-midnight-void);
+  --surface-accent: var(--brand-horizon-light);
+
+  /* Text & Typography */
+  --text-main: var(--brand-midnight-void);
+  --text-muted: var(--primitive-neutral-600);
+  --text-brand: var(--brand-constellation-blue);
+  --text-inverse: #ffffff;
+  --text-inverse-muted: var(--primitive-neutral-300);
+
+  /* Icons */
+  --icon-main: var(--brand-midnight-void);
+  --icon-muted: var(--primitive-neutral-500);
+  --icon-brand: var(--brand-constellation-blue);
+
+  /* Borders */
+  --border-subtle: var(--primitive-neutral-200);
+  --border-medium: var(--primitive-neutral-300);
+  --border-dark: var(--brand-midnight-void);
+
+  /* Action Elements */
+  --action-primary-bg: var(--brand-constellation-blue);
+  --action-primary-text: #ffffff;
+  --action-primary-hover: var(--primitive-primary-700);
+
+  /* Typography & Layout Tokens */
+  --font-family: "Cairo", system-ui, -apple-system, sans-serif;
+  --fs-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+  --fs-sm: clamp(0.875rem, 0.83rem + 0.25vw, 1rem);
+  --fs-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+  --fs-md: clamp(1.125rem, 1.05rem + 0.35vw, 1.25rem);
+  --fs-lg: clamp(1.25rem, 1.15rem + 0.5vw, 1.5rem);
+  --fs-xl: clamp(1.5rem, 1.3rem + 1vw, 2rem);
+  --fs-2xl: clamp(2rem, 1.6rem + 2vw, 3rem);
+
+  --space-2xs: 0.25rem;
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2rem;
+  --space-xl: 3rem;
+  --space-2xl: 5rem;
+
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+
+  --container-max: 1280px;
+  --transition-fast: 0.25s ease;
+
+  /* Surface Gradient Overlays */
+  --gradient-overlay-dark: linear-gradient(
+    to top,
+    rgba(9, 14, 21, 0.92) 0%,
+    rgba(9, 14, 21, 0.55) 35%,
+    rgba(9, 14, 21, 0.15) 65%,
+    rgba(9, 14, 21, 0) 100%
+  );
+}
+
+/* ==========================================================================
+   2. DARK MODE THEME OVERRIDES
+   ========================================================================== */
+[data-theme="dark"] {
+  --surface-page: var(--primitive-neutral-900);
+  --surface-card: var(--brand-midnight-void);
+  --surface-subtle: var(--primitive-neutral-1000);
+  --surface-inverse: #ffffff;
+  --surface-accent: var(--primitive-neutral-700);
+
+  --text-main: #ffffff;
+  --text-muted: var(--primitive-neutral-300);
+  --text-brand: var(--brand-horizon-light);
+  --text-inverse: var(--brand-midnight-void);
+
+  --border-subtle: var(--primitive-neutral-700);
+  --border-medium: var(--primitive-neutral-600);
+
+  --action-primary-bg: var(--brand-constellation-blue);
+  --action-primary-text: #ffffff;
+  --action-primary-hover: var(--primitive-primary-400);
+
+  --icon-main: var(--brand-horizon-light);
+  --icon-muted: var(--primitive-neutral-400);
+}
+
+/* ==========================================================================
+   3. BASE STYLES & LAYOUT
+   ========================================================================== */
+body {
+  font-family: var(--font-family);
+  background-color: var(--surface-page);
+  color: var(--text-main);
+  line-height: 1.6;
+  transition:
+    background-color var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--space-md);
+}
+
+:focus-visible {
+  outline: 2px solid var(--brand-constellation-blue);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* ==========================================================================
+   4. SITE HEADER & NAVIGATION
+   ========================================================================== */
+.site-header {
+  background-color: var(--surface-card);
+  border-bottom: 1px solid var(--border-subtle);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  padding: var(--space-sm) 0;
+  transition:
+    background-color var(--transition-fast),
+    border-color var(--transition-fast);
+}
+
+.nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+}
+
+.header-logo__img,
+.footer-logo img {
+  display: block;
+  transition: filter var(--transition-fast);
+}
+
+[data-theme="dark"] .header-logo__img,
+[data-theme="dark"] .footer-logo img {
+  filter: invert(1) brightness(2);
+}
+
+.nav-links {
+  display: flex;
+  gap: var(--space-md);
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--text-main);
+  font-weight: 600;
+  font-size: var(--fs-sm);
+  transition: color var(--transition-fast);
+}
+
+.nav-links a:hover {
+  color: var(--text-brand);
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+/* ==========================================================================
+   5. BUTTONS & CONTROLS
+   ========================================================================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.6rem 1.25rem;
+  border-radius: var(--radius-sm);
+  font-weight: 700;
+  font-size: var(--fs-sm);
+  text-decoration: none;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  border: 1px solid transparent;
+}
+
+.btn-primary {
+  background-color: var(--action-primary-bg);
+  color: var(--action-primary-text);
+}
+
+.btn-primary:hover {
+  background-color: var(--action-primary-hover);
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: var(--text-main);
+  border: 2px solid var(--border-medium);
+}
+
+.btn-outline:hover {
+  border-color: var(--text-brand);
+  color: var(--text-brand);
+}
+
+.icon-btn {
+  background: transparent;
+  border: none;
+  font-size: var(--fs-md);
+  color: var(--icon-main);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 0.4rem;
+  border-radius: var(--radius-sm);
+}
+
+.icon-btn:hover {
+  background-color: var(--surface-subtle);
+}
+
+.lang-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: var(--surface-subtle);
+  border: 1px solid var(--border-subtle);
+  padding: 0.4rem 0.8rem;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  font-family: var(--font-family);
+  cursor: pointer;
+  color: var(--text-main);
+  transition:
+    background-color var(--transition-fast),
+    border-color var(--transition-fast);
+}
+
+.lang-toggle-btn:hover {
+  border-color: var(--text-brand);
+}
+
+.theme-toggle-btn {
+  font-size: 1.1rem;
+  transition: transform var(--transition-fast);
+}
+
+.theme-toggle-btn:hover {
+  transform: scale(1.1);
+}
+
+/* ==========================================================================
+   6. HERO SECTION
+   ========================================================================== */
+.hero-section {
+  position: relative;
+  background-color: var(--surface-page);
+  height: calc(100vh - 73px);
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.hero-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-xl);
+  height: 100%;
+}
+
+.hero-content {
+  flex: 1;
+  max-width: 500px;
+  z-index: 2;
+}
+
+.hero-content h1 {
+  font-size: var(--fs-2xl);
+  font-weight: 800;
+  line-height: 1.1;
+  color: var(--text-brand);
+  margin-bottom: var(--space-md);
+}
+
+.hero-content p {
+  font-size: var(--fs-lg);
+  color: var(--text-muted);
+  margin-bottom: var(--space-lg);
+}
+
+.hero-actions {
+  display: flex;
+  gap: var(--space-sm);
+}
+
+.hero-visual {
+  flex: 1.2;
+  position: relative;
+  height: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chevron-mask {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  clip-path: polygon(15% 0%, 100% 0%, 85% 50%, 100% 100%, 15% 100%, 0% 50%);
+  background-color: var(--surface-subtle);
+  border-radius: var(--radius-lg);
+}
+
+.bg-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ==========================================================================
+   7. ABOUT PREVIEW SECTION
+   ========================================================================== */
+.about-preview-section {
+  padding-block: var(--space-2xl);
+  background-color: var(--surface-page);
+  overflow: hidden;
+}
+
+.about-preview__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-xl);
+  align-items: start;
+}
+
+.eyebrow {
+  display: block;
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: var(--space-md);
+  text-align: start;
+  color: var(--text-brand);
+}
+
+.about-preview__title {
+  font-size: clamp(2.5rem, 4.5vw, 4rem);
+  font-weight: 800;
+  line-height: 1.05;
+  color: var(--text-main);
+  letter-spacing: -0.02em;
+  text-align: start;
+}
+
+.about-preview__content {
+  margin-top: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.about-preview__content p {
+  font-size: var(--fs-base);
+  color: var(--text-muted);
+  margin-bottom: var(--space-md);
+  line-height: 1.7;
+  text-align: start;
+}
+
+.link-wrapper {
+  margin-top: var(--space-lg);
+}
+
+.inline-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-brand);
+  font-size: var(--fs-md);
+  font-weight: 700;
+  text-decoration: none;
+  transition:
+    gap var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.inline-link i {
+  font-size: 1.2rem;
+  transition: transform var(--transition-fast);
+}
+
+.inline-link:hover {
+  gap: 0.8rem;
+}
+
+/* Scroll reveal physics */
+.reveal-element {
+  opacity: 0;
+  transform: translateY(50px);
+  transition:
+    opacity 0.8s ease-out,
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-element.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ==========================================================================
+   8. VIDEO SHOWCASE SECTION (SCROLL SCALING)
+   ========================================================================== */
+.video-section {
+  padding-block: var(--space-2xl);
+  background-color: var(--surface-page);
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.video-frame {
+  position: relative;
+  width: 100%;
+  max-width: var(--container-max);
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+  background-color: var(--primitive-neutral-1000);
+  transform: scale(0.85); /* Initial scale before scrolling down */
+  will-change: transform;
+  transform-origin: center center;
+  transition: transform 0.1s linear;
+}
+
+.video-bg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.video-frame:hover .video-bg {
+  transform: scale(1.04);
+}
+
+.video-overlay-gradient {
+  position: absolute;
+  inset: 0;
+  background: var(--gradient-overlay-dark);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.video-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: clamp(1.5rem, 4vw, 3rem);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  z-index: 2;
+}
+
+.video-title {
+  color: #ffffff !important;
+  font-size: clamp(1.25rem, 2.5vw, 2.25rem);
+  font-weight: 700;
+  line-height: 1.15;
+  max-width: 55%;
+  margin: 0;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+  text-align: start;
+}
+
+.video-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  color: #ffffff;
+  padding: 0.5rem 1.25rem 0.5rem 0.5rem;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: var(--fs-sm);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.play-icon-wrapper {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--action-primary-bg);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition:
+    transform var(--transition-fast),
+    background-color var(--transition-fast);
+}
+
+.play-icon-wrapper i {
+  font-size: var(--fs-md);
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   9. FULLSCREEN VIDEO LIGHTBOX MODAL
+   ========================================================================== */
+.video-modal {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 999999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    opacity 0.35s ease,
+    visibility 0.35s ease;
+}
+
+.video-modal.is-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.video-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: var(--primitive-neutral-1000);
+}
+
+.video-modal__content {
+  position: relative;
+  z-index: 2;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.video-modal__player-wrapper {
+  width: 100vw;
+  height: 100vh;
+  background: #000000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.video-modal__player-wrapper video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.video-modal__close {
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  z-index: 1000000;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.video-modal__close:hover {
+  background: rgba(255, 255, 255, 0.35);
+  transform: scale(1.1);
+}
+
+/* ==========================================================================
+   10. SITE FOOTER & BREAKPOINTS
+   ========================================================================== */
+.site-footer {
+  background-color: var(--surface-card);
+  color: var(--text-main);
+  border-top: 1px solid var(--border-subtle);
+  padding-block: var(--space-2xl) var(--space-lg);
+}
+
+@media (max-width: 992px) {
+  .nav-links {
+    display: none;
+  }
+  .about-preview__grid {
+    grid-template-columns: 1fr;
+  }
+  .about-preview__content {
+    margin-top: var(--space-md);
+  }
+}
+
+/* --- RTL (Arabic) Adjustments --- */
+html[dir="rtl"] .chevron-mask {
+  clip-path: polygon(0% 0%, 85% 0%, 100% 50%, 85% 100%, 0% 100%, 15% 50%);
+}
+
+html[dir="rtl"] .inline-link i {
+  transform: rotate(180deg);
+}
+
+html[dir="rtl"] .video-modal__close {
+  right: auto;
+  left: 2rem;
+}
+
+/* Ensure asymmetric CTA padding correctly flips visually */
+html[dir="rtl"] .video-cta-btn {
+  padding: 0.5rem 0.5rem 0.5rem 1.25rem;
+}
