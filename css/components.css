@@ -1418,75 +1418,114 @@ html[dir="rtl"] .footer-watermark-group {
   .nav-links {
     display: none;
   }
-  .hero-section {
-    height: auto;
-    min-height: 100vh;
-    padding: var(--space-xl) 0;
+
+  /* --- MOBILE HERO FIXES --- */
+  .hero-advanced-section {
+    height: 100vh;
+    min-height: 650px;
+    padding: 0; 
   }
-  .hero-container {
+  
+  .hero-advanced-section .hero-container {
     flex-direction: column;
+    /* 5. Push the title to the top */
+    justify-content: flex-start; 
+    align-items: center;
     text-align: center;
-    height: auto;
+    /* 5. Accounts for the ~60px header + the 80px gap you requested */
+    padding-top: 140px; 
+    height: 100%;
+    z-index: 30;
   }
+  
+  .hero-content {
+    flex: none;
+    max-width: 90%;
+  }
+
+  .hero-content h1 {
+    font-size: clamp(2.2rem, 8vw, 3rem);
+    line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+
+  .hero-content p {
+    font-size: 1.1rem;
+  }
+  
   .hero-actions {
+    display: flex;
     justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
   }
+  
   .hero-visual {
     width: 100%;
-    height: 400px;
-  }
-  .about-preview__grid {
-    grid-template-columns: 1fr;
-    gap: var(--space-lg);
-  }
-  .about-preview__content {
-    margin-top: var(--space-md);
-  }
-  .about-preview__title {
-    font-size: 2.5rem;
-  }
-  .cards-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .footer-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-  .partners-grid {
-    grid-template-columns: repeat(3, 1fr);
+    height: 100%;
   }
 
-  .section-header-advanced {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: var(--space-md);
+  /* DISABLE MASKS ON MOBILE */
+  .hero-mask-layer,
+  .hero-glass-border,
+  .hero-mask-fg,
+  .hero-mask-bg {
+    -webkit-mask-image: none !important;
+    mask-image: none !important;
+    background: none !important; /* Clears the glass border effect */
   }
 
-  .modern-card {
-    flex: 0 0
-      calc(
-        (
-            min(100vw - (var(--space-md) * 2), var(--container-max)) -
-              var(--space-lg)
-          ) /
-          2
-      );
+  /* 4. Show the background image cleanly */
+  .hero-bg-clear {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    z-index: 1;
   }
-}
 
-@media (max-width: 680px) {
-  .cards-grid,
-  .footer-grid {
-    grid-template-columns: 1fr;
+  /* 3. Center the foreground image behind the overlay */
+  .hero-fg-img {
+    height: 55vh; 
+    width: auto;
+    object-fit: contain;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%); /* Locks it perfectly in the center */
+    bottom: 0;
+    z-index: 5; 
   }
-  .partners-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .modern-card {
-    flex: 0 0 85%;
-  }
-}
 
-/* --- RTL (Arabic) Specific Rules --- */
+  /* Center fix for RTL (Arabic) mode */
+  html[dir="rtl"] .hero-fg-img {
+    transform: translateX(50%) scaleX(-1);
+  }
+
+  /* 1. Add a 70% opaque dark gradient fading from bottom to top */
+  .hero-visual::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 50%);
+    z-index: 10; /* Sits above the foreground image */
+    pointer-events: none;
+  }
+
+  /* 2. Controls sit at the bottom, perfectly visible over the dark gradient */
+  .hero-controls-wrapper {
+    bottom: 2rem;
+    left: 0;
+    right: 0;
+    width: 100%;
+    justify-content: center;
+    padding: 0 var(--space-md);
+    z-index: 40; /* Sits above the gradient overlay */
+  }
+  /* ------------------------- */
+
+/* ==========================================================================
+   RTL (ARABIC) SPECIFIC RULES
+   ========================================================================== */
 html[dir="rtl"] .chevron-mask {
   clip-path: polygon(0% 0%, 85% 0%, 100% 50%, 85% 100%, 0% 100%, 15% 50%);
 }
@@ -1494,6 +1533,12 @@ html[dir="rtl"] .chevron-mask {
 @media (max-width: 992px) {
   html[dir="rtl"] .chevron-mask {
     clip-path: polygon(0% 0%, 90% 0%, 100% 50%, 90% 100%, 0% 100%, 10% 50%);
+  }
+
+  /* Reset RTL left/right for the centered mobile controls */
+  html[dir="rtl"] .hero-controls-wrapper {
+    left: 0;
+    right: 0;
   }
 }
 
@@ -1518,7 +1563,7 @@ html[dir="rtl"] .video-cta-btn {
   padding: 0.5rem 0.5rem 0.5rem 1.25rem;
 }
 
-/* --- HERO RTL (ARABIC) OVERRIDES --- */
+/* --- HERO RTL OVERRIDES --- */
 html[dir="rtl"] .hero-controls-wrapper {
   left: auto;
   right: max(
@@ -1540,7 +1585,7 @@ html[dir="rtl"] .hero-fg-img {
   transform: scaleX(-1);
 }
 
-/* --- SECTION HEADER RTL (ARABIC) FIXES --- */
+/* --- SECTION HEADER RTL FIXES --- */
 html[dir="rtl"] .section-header-advanced__link i {
   transform: rotate(180deg);
 }
