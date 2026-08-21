@@ -687,7 +687,7 @@ kolak-section-header {
   font-size: clamp(2.5rem, 4.5vw, 4rem);
   font-weight: 800;
   line-height: 1 !important;
-  color: var(--primitive-primary-300);
+  color: var(--primitive-neutral-300);
   margin: 0 !important;
   padding: 0 !important;
   z-index: 10;
